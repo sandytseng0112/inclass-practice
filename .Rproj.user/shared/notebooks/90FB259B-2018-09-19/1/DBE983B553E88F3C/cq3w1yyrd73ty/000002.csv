@@ -1,0 +1,15 @@
+"0","factor(student$身高級距,"
+"0","       levels=c(""(0,150]"",""(150,155]"", ""(155,160]"", ""(160,165]"" ,""(165,170]"", ""(170,175]"" ,""(175,180]"" ,""(180,185]"", ""(185,200]""),"
+"0","       ordered=TRUE) -> student$身高級距"
+"2","Unknown or uninitialised column: '�����ŶZ'."
+"2","Error in `$<-.data.frame`(`*tmp*`, 身高級距, value = integer(0)) : 
+  replacement has 0 rows, data has 1057
+"
+"2","In addition: "
+"2","Warning message:
+"
+"2","In strsplit(code, ""\n"", fixed = TRUE) :"
+"2","
+ "
+"2"," input string 1 is invalid in this locale
+"
