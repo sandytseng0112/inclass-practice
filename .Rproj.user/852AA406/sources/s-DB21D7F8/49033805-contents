@@ -17,8 +17,23 @@ str_c(splitResult) -> arrayResult
 head(arrayResult)
 ```
 
+
+```
+
 ```{r}
 table(arrayResult)
+```
+
+
+```
+```{r}
+library(googlesheets)
+```
+
+```{r}
+gs_auth(new_user = TRUE)                                                                                           
+```
+
 ```
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
