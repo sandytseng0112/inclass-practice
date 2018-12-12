@@ -1,0 +1,152 @@
+---
+title: "2018-12-12"
+output: html_document
+---
+```{r}
+library(readr)
+libraryData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/library100_102.csv")
+```
+
+```{r}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr); library(dplyr); library(stringr); library(lubridate)
+```
+
+```{r}
+libraryData$書籍館藏地 %>%
+  as.factor %>%
+  levels -> storageLocations
+```
+
+
+```{r}
+libraryData$學院 %>% as.factor %>% levels -> college
+ #0 
+collegeBorrowCount <- vector("numeric",length(college))
+for(i in c(1:length(college))){
+#1
+college_i <- college[i]
+#2
+numericalIndexForSubsample<-which(libraryData$學院 == college_i)
+collegesubsample_i <- libraryData[numericalIndexForSubsample,]
+#3
+collegeBorrowCount_i <- nrow(collegesubsample_i)
+#4
+collegeBorrowCount[[i]]<-collegeBorrowCount_i 
+```
+
+```{r}
+libraryData$書籍館藏地 <-
+  as.factor(libraryData$書籍館藏地)
+levels(libraryData$書籍館藏地) -> storageLocations
+
+```
+
+```{r}
+i<-2
+# 1
+storageLocation_i <- storageLocations[i] 
+# 2
+numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+subsample_i <- libraryData[numericalIndexForSubsample,]
+# 3
+borrowCount_i <- nrow(subsample_i)
+```
+
+```{r}
+# 0
+allBorrowCount <- vector("numeric",18)
+```
+
+```{r}
+for(i in c(1:18)){
+  # 1
+  storageLocation_i <- storageLocations[i] 
+  # 2
+  numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+  subsample_i <- libraryData[numericalIndexForSubsample,]
+  # 3
+  borrowCount_i <- nrow(subsample_i)
+  # 4
+  allBorrowCount[[i]]<-borrowCount_i  
+```
+
+```{r}
+names(allBorrowCount) <- storageLocations
+```
+
+```{r}
+libraryData$學院 %>% as.factor %>% levels -> college
+```
+
+```{r}
+libraryData$學號 %>% as.factor %>% levels -> student
+libraryData$學號 %>% unique -> student
+#0
+studentBorrow <- vector("numeric", length(student))
+for(i in c(1:length(student))){
+# 1
+student_i <- student[i]
+# 2
+numericalIndex <- which(libraryData$學號 == student_i)
+studentSubsample_i <- libraryData[numericalIndex,]
+# 3
+studentBorrow_i <- nrow(studentSubsample_i)
+# 4
+studentBorrow[[i]] <- studentBorrow_i
+```
+
+```{r}
+ans<-0
+for(i in 1:10){
+  newlyAdded<-i
+  ans<-ans+newlyAdded
+```
+
+```
+```{r}
+libraryData %>%
+  group_by(書籍館藏地) %>%
+  summarise(
+    borrowCount=length(學號)
+  ) -> result
+```
+```{r}
+
+```
+
+```
+```{r}
+libraryData %>%
+  mutate(
+    學系=str_sub(學號,5,6)
+    ## 相當於 libraryData$學系 <- str_sub(libraryData$學號,5,6)
+  ) -> libraryData
+```
+```
+```{r}
+#0 container
+ for(i in seq_along(College)){
+  for(j in seq_along(EntranceYear)){
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
